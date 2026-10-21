@@ -15,7 +15,7 @@ PAUSA = {
     "en.wikipedia.org": 0.5,
     "searching.nintendo-europe.com": 0.3,
     "api.ec.nintendo.com": 0.5,
-    "www.eneba.com": 1.5,
+    "www.eneba.com": 4.0,   # con 1,5 s Cloudflare corta con 429 tras unas decenas de fichas
 }
 _ultima = {}
 
@@ -28,7 +28,22 @@ def _esperar(host):
     _ultima[host] = time.monotonic()
 
 
-def descargar(url, params=None, intentos=4):
+def _leer(peticion, limite):
+    """Lee la respuesta entera, pero corta si tarda más de `limite` segundos en total: el timeout de
+    urlopen solo vale para cada espera suelta y una descarga que llega a goteo no acabaría nunca."""
+    inicio = time.monotonic()
+    partes = []
+    with urllib.request.urlopen(peticion, timeout=20) as respuesta:
+        while True:
+            parte = respuesta.read(1 << 16)
+            if not parte:
+                return b"".join(partes).decode("utf-8")
+            partes.append(parte)
+            if time.monotonic() - inicio > limite:
+                raise TimeoutError(f"más de {limite} s descargando")
+
+
+def descargar(url, params=None, intentos=4, limite=90):
     """Devuelve el texto de la URL. Reintenta con espera creciente si hay 429 o errores del servidor."""
     if params:
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
@@ -36,17 +51,18 @@ def descargar(url, params=None, intentos=4):
     for intento in range(intentos):
         _esperar(host)
         try:
-            peticion = urllib.request.Request(url, headers={"User-Agent": AGENTE})
-            with urllib.request.urlopen(peticion, timeout=30) as respuesta:
-                return respuesta.read().decode("utf-8")
+            return _leer(urllib.request.Request(url, headers={"User-Agent": AGENTE}), limite)
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or intento == intentos - 1:
                 raise
             espera = 30 * (intento + 1) if error.code == 429 else 5 * (intento + 1)
-        except (urllib.error.URLError, TimeoutError):
+            motivo = f"error {error.code}"
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
             if intento == intentos - 1:
                 raise
             espera = 5 * (intento + 1)
+            motivo = str(error)
+        print(f"  {host}: {motivo}; reintento en {espera} s", flush=True)
         time.sleep(espera)
 
 

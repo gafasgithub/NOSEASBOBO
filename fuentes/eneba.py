@@ -34,8 +34,10 @@ def crear_indice():
     """{"steam:nombre": [slug de producto, ...]} con las claves activables en España."""
     portada = descargar(WEB + "sitemap.xml")
     indice = {}
-    for fichero in sorted(set(re.findall(r"sitemap/products\d+\.xml", portada))):
-        for producto in RE_LOC.findall(descargar(WEB + fichero)):
+    ficheros = sorted(set(re.findall(r"sitemap/products\d+\.xml", portada)), key=lambda f: int(re.sub(r"\D", "", f)))
+    for n, fichero in enumerate(ficheros, 1):
+        print(f"  Eneba índice {n}/{len(ficheros)}", flush=True)
+        for producto in RE_LOC.findall(descargar(WEB + fichero, intentos=2)):
             for plataforma, patron in PATRONES.items():
                 m = patron.match(producto)
                 if m and m.group(2) in REGIONES:
@@ -65,7 +67,7 @@ def producto(juego, indice):
 
 def precio(producto):
     """Precio más bajo (euros) entre las ofertas con existencias, o None si no hay ninguna."""
-    texto = descargar(WEB + producto)
+    texto = descargar(WEB + producto, intentos=1)  # sin reintentos: un 429 se resuelve parando por hoy
     i = texto.find("__APOLLO_STATE__")
     if i < 0:
         return None

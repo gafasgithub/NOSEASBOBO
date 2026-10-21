@@ -136,7 +136,7 @@ function lineaEneba(j) {
   const comparacion = a == null ? '' : a >= 0.01 ? `<span class="eneba-ahorro">-${pct(a)} que la tienda</span>`
     : '<span class="nota">no sale más barato</span>';
   return `<div class="eneba" role="link" tabindex="0" data-eneba="${esc(j.eneba.url)}" title="Ver la clave en Eneba">
-    <span class="eneba-marca">ENEBA</span><b>${euros(j.eneba.precio)}</b>${comparacion}</div>`;
+    <span class="eneba-marca">ENEBA</span><b>${euros(j.eneba.precio)}</b>${comparacion}${j.eneba.fecha !== DATOS.hoy ? `<span class="nota">(precio del ${fechaCorta(j.eneba.fecha)})</span>` : ''}</div>`;
 }
 
 function ficha(j, comparando = false) {

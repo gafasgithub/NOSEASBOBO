@@ -23,7 +23,10 @@ Nintendo Switch de los últimos meses, y comparación con los mismos meses de a�
   `.cache/eneba_indice.json` (7 días; en Actions con actions/cache). URL de clave: `steam-<slug>-(pc-steam-key|
   steam-key-pc|steam-pc-key)-<región>` o `nintendo-<slug>-nintendo-switch[-2]-eshop-key-<región>`; regiones
   válidas en `REGIONES`. Precio: mínimo de los `Auction:` con existencias del `__APOLLO_STATE__` de la
-  ficha. Precios en `datos/eneba.json` (recientes cada día, el resto cada 7). Pausa 1,5 s. La línea de
+  ficha. Precios en `datos/eneba.json` (recientes cada día, el resto cada 7). Cloudflare corta con 429
+  si se va rápido: pausa de 4 s, sin reintentos y, al primer 429 o a los `MINUTOS_ENEBA`, se deja para
+  el día siguiente (se usan los precios guardados). Las descargas tienen tope de tiempo total
+  (`fuentes/comun.py`) y el job de Actions, `timeout-minutes: 30`. La línea de
   Eneba está dentro de la ficha `<a>`: abre con `data-eneba` + JS (no se pueden anidar enlaces).
 - `datos/historial.json`: primer precio visto (`pvp`, `visto`) y mínimo de cada juego. Si `visto` está a
   ≤31 días de la salida, ese PVP es el precio de salida (`salida`); si no, la web usa el PVP actual.

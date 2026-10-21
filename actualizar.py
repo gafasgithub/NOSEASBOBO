@@ -11,7 +11,9 @@ import datetime as dt
 import json
 import pathlib
 import sys
+import time
 import traceback
+import urllib.error
 import webbrowser
 
 from fuentes import eneba, nintendo, steam, wikipedia
@@ -28,6 +30,7 @@ SALIDA = DATOS / "juegos.js"
 HISTORIAL = DATOS / "historial.json"
 PRECIOS_ENEBA = DATOS / "eneba.json"
 INDICE_ENEBA = RAIZ / ".cache" / "eneba_indice.json"
+MINUTOS_ENEBA = 12   # tope para consultar precios de Eneba (~180 fichas); lo que falte, al día siguiente
 
 
 def leer_json(ruta, defecto):
@@ -93,7 +96,8 @@ def juegos_switch(meses, hoy):
 
 def aplicar_eneba(juegos, hoy):
     """Precio de la clave en Eneba. Los juegos de los últimos meses se miran cada día y los de años
-    anteriores cada semana; si Eneba falla, se quedan los últimos precios conocidos."""
+    anteriores cada semana. Si Eneba frena (429) o se acaba el tiempo, se deja para el día siguiente
+    y se usan los últimos precios conocidos."""
     guardados = leer_json(PRECIOS_ENEBA, {})
     try:
         indice = eneba.cargar_indice(INDICE_ENEBA)
@@ -101,23 +105,38 @@ def aplicar_eneba(juegos, hoy):
         traceback.print_exc()
         print("Eneba: no se pudo leer el índice; se usan los precios guardados.")
         indice = None
+    consultar = indice is not None
     consultados = 0
-    try:
-        for j in juegos:
-            producto = eneba.producto(j, indice) if indice is not None else next(
-                (p for p, g in guardados.items() if g.get("id") == j["id"]), None)
-            if not producto:
-                continue
-            g = guardados.get(producto)
-            dias = 1 if (hoy - dt.date.fromisoformat(j["fecha"])).days < 120 else 7
-            if indice is not None and (not g or (hoy - dt.date.fromisoformat(g["fecha"])).days >= dias):
+    fin = time.monotonic() + MINUTOS_ENEBA * 60
+    # Primero los más recientes, que son los que cambian de precio a diario.
+    for j in sorted(juegos, key=lambda j: j["fecha"], reverse=True):
+        producto = eneba.producto(j, indice) if indice is not None else next(
+            (p for p, g in guardados.items() if g.get("id") == j["id"]), None)
+        if not producto:
+            continue
+        g = guardados.get(producto)
+        dias = 1 if (hoy - dt.date.fromisoformat(j["fecha"])).days < 120 else 7
+        caducado = not g or (hoy - dt.date.fromisoformat(g["fecha"])).days >= dias
+        if consultar and caducado and time.monotonic() >= fin:
+            print(f"Eneba: se acabaron los {MINUTOS_ENEBA} minutos; el resto, mañana.")
+            consultar = False
+        if consultar and caducado:
+            try:
                 g = guardados[producto] = {"id": j["id"], "precio": eneba.precio(producto), "fecha": hoy.isoformat()}
                 consultados += 1
-            if g and g["precio"] is not None:
-                j["eneba"] = {"precio": g["precio"], "url": eneba.WEB + producto, "fecha": g["fecha"]}
-    except Exception:
-        traceback.print_exc()
-        print("Eneba ha fallado a medias; se guardan los precios conseguidos.")
+                if consultados % 25 == 0:
+                    guardar_json(PRECIOS_ENEBA, guardados)
+                    print(f"  Eneba: {consultados} precios consultados", flush=True)
+            except urllib.error.HTTPError as error:
+                if error.code == 429:
+                    print("Eneba: pide que vayamos más despacio (429); el resto, mañana.")
+                    consultar = False
+                else:
+                    print(f"  Eneba: {producto}: error {error.code}")
+            except Exception as error:
+                print(f"  Eneba: {producto}: {error}")
+        if g and g.get("precio") is not None:
+            j["eneba"] = {"precio": g["precio"], "url": eneba.WEB + producto, "fecha": g["fecha"]}
     guardar_json(PRECIOS_ENEBA, guardados)
     print(f"Eneba: {consultados} precios consultados, {sum('eneba' in j for j in juegos)} juegos con precio")
 
