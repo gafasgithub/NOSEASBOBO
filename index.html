@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>No seas bobo</title>
+  <meta name="description" content="Precio de hoy de los lanzamientos de Steam y Nintendo Switch de los últimos meses, y cuánto han bajado los de los mismos meses de años anteriores.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='%231b1838' d='M2 4h12v1h1v6h-1v1H2v-1H1V5h1z'/><path fill='%23ffcc33' d='M2 5h12v6H2z'/><path fill='%231b1838' d='M4 6h1v1h1v1H5v1H4V8H3V7h1z M10 6h1v1h-1z M12 8h1v1h-1z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script>
+    // Aplica el tema guardado antes de pintar, para que no parpadee en claro.
+    try { if (localStorage.getItem('noseasbobo.tema') === 'oscuro') document.documentElement.dataset.tema = 'oscuro'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-contenido">
+      <div class="hero-texto">
+        <div class="marca">
+          <!-- moneda pixelada -->
+          <svg class="pixel moneda" viewBox="0 0 12 12" aria-hidden="true">
+            <path fill="#1b1838" d="M4 0h4v1h2v1h1v2h1v4h-1v2h-1v1H8v1H4v-1H2v-1H1V8H0V4h1V2h1V1h2z"/>
+            <path fill="#ffcc33" d="M4 1h4v1h2v2h1v4h-1v2H8v1H4v-1H2V8H1V4h1V2h2z"/>
+            <path fill="#c98a00" d="M5 3h2v1h1v1H7V4H5v1h2v1h1v2H7v1H5V8H4V7h1v1h2V7H5V6H4V4h1z"/>
+          </svg>
+          STEAM Y SWITCH &middot; PRECIOS DE HOY
+        </div>
+        <h1>NO SEAS BOBO</h1>
+        <p class="sub">¿Comprar de salida o esperar? Lo que cuestan hoy los juegos de los últimos meses y cuánto han bajado los de años anteriores.</p>
+        <p class="actualizado" id="actualizado">cargando…</p>
+      </div>
+      <div class="escena" aria-hidden="true">
+        <!-- mando pixelado con etiqueta de rebaja -->
+        <svg class="pixel mando" viewBox="0 0 40 26">
+          <path fill="#000" d="M8 4h24v1h3v1h2v2h1v4h1v8h-1v2h-1v1h-4v-1h-2v-1h-2v-1H11v1H9v1H7v1H3v-1H2v-2H1v-8h1V8h1V6h2V5h3z"/>
+          <path fill="#ece8ff" d="M8 5h24v1h3v2h1v1h1v3h1v8h-1v1h-1v1h-3v-1h-2v-1h-2v-1H11v1H9v1H7v1H4v-1H3v-1H2v-8h1V9h1V8h1V6h3z"/>
+          <path fill="#1b1838" d="M8 9h2v2h2v2h-2v2H8v-2H6v-2h2z"/>
+          <path fill="#d8414a" d="M29 8h2v2h-2z"/>
+          <path fill="#2fa84f" d="M32 11h2v2h-2z"/>
+          <path fill="#3a7bd5" d="M26 11h2v2h-2z"/>
+          <path fill="#ffcc33" d="M29 14h2v2h-2z"/>
+          <path fill="#6a6290" d="M16 13h3v1h-3z M21 13h3v1h-3z"/>
+        </svg>
+        <div class="etiqueta-rebaja">-50%</div>
+      </div>
+      <button id="tema" class="boton-tema" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro">
+        <svg class="pixel luna" viewBox="0 0 12 12" aria-hidden="true">
+          <path fill="#ffcc33" d="M4 1h4v1H6v1H5v1H4v4h1v1h1v1h2v1H4v-1H3V9H2V8H1V4h1V3h1V2h1z"/>
+          <path fill="#c98a00" d="M2 8h1v1h1v1h1v1H4v-1H3V9H2z"/>
+        </svg>
+        <svg class="pixel sol" viewBox="0 0 12 12" aria-hidden="true">
+          <path fill="#ffcc33" d="M5 0h2v2H5z M5 10h2v2H5z M0 5h2v2H0z M10 5h2v2h-2z M1 1h2v2H1z M9 1h2v2H9z M1 9h2v2H1z M9 9h2v2H9z M4 3h4v1h1v4H8v1H4V8H3V4h1z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="suelo-hero"></div>
+  </header>
+
+  <nav class="pestanas" role="tablist">
+    <button role="tab" data-pestana="novedades" aria-selected="true">NOVEDADES</button>
+    <button role="tab" data-pestana="comparar" aria-selected="false">COMPARAR</button>
+  </nav>
+
+  <div class="barra-plataforma">
+    <div class="plataformas" role="group" aria-label="Plataforma">
+      <button type="button" data-plataforma="steam" class="steam">STEAM</button>
+      <button type="button" data-plataforma="switch" class="switch">SWITCH</button>
+    </div>
+    <div class="filtros" id="consolas" role="group" aria-label="Consola" hidden>
+      <button type="button" data-consola="">Todas</button>
+      <button type="button" data-consola="Switch">Switch</button>
+      <button type="button" data-consola="Switch 2">Switch 2</button>
+    </div>
+  </div>
+
+  <main>
+    <section id="novedades" class="panel" role="tabpanel"></section>
+    <section id="comparar" class="panel" role="tabpanel" hidden></section>
+  </main>
+
+  <footer class="pie">
+    Datos: listas de lanzamientos de Wikipedia, tienda de Steam (España) y eShop de Nintendo (España).
+    Los precios son los de la tienda digital el día de la actualización.
+  </footer>
+
+  <script src="datos/juegos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

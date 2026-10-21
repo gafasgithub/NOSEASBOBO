@@ -1,0 +1,80 @@
+name: Actualizar web
+
+on:
+  schedule:
+    # GitHub usa hora UTC. Para que sean las 8:00 en España todo el año
+    # hay dos horarios, y el paso "hora" deja pasar solo el que toca.
+    - cron: "0 6 * * *"   # 8:00 en horario de verano (CEST)
+    - cron: "0 7 * * *"   # 8:00 en horario de invierno (CET)
+  workflow_dispatch:      # botón para lanzarlo a mano desde la pestaña Actions
+  push:                   # y cada vez que se sube código nuevo
+    branches: [main]
+
+permissions:
+  contents: write         # para guardar en el repo el historial de precios y la caché de Steam
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.desplegar.outputs.page_url }}
+    steps:
+      - name: Comprobar el horario de España
+        id: hora
+        run: |
+          if [ "$(TZ=Europe/Madrid date +%z)" = "+0200" ]; then toca="0 6 * * *"; else toca="0 7 * * *"; fi
+          if [ "${{ github.event_name }}" != "schedule" ] || [ "${{ github.event.schedule }}" = "$toca" ]; then
+            echo "seguir=si" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.hora.outputs.seguir == 'si'
+
+      - uses: actions/setup-python@v5
+        if: steps.hora.outputs.seguir == 'si'
+        with:
+          python-version: "3.12"
+
+      - name: Actualizar precios
+        if: steps.hora.outputs.seguir == 'si'
+        env:
+          TZ: Europe/Madrid
+        run: python actualizar.py
+
+      # El historial (precio de salida y mínimos) solo existe aquí: se guarda en el repo cada día.
+      - name: Guardar datos en el repositorio
+        if: steps.hora.outputs.seguir == 'si'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add datos
+          if ! git diff --cached --quiet; then
+            git commit -m "Datos del $(TZ=Europe/Madrid date +%F)"
+            git pull --rebase -X theirs origin main && git push
+          fi
+
+      - name: Preparar la web
+        if: steps.hora.outputs.seguir == 'si'
+        run: |
+          mkdir -p _site/datos
+          cp -r index.html css js _site/
+          cp datos/juegos.js _site/datos/
+
+      - uses: actions/configure-pages@v5
+        if: steps.hora.outputs.seguir == 'si'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.hora.outputs.seguir == 'si'
+        with:
+          path: _site
+
+      - uses: actions/deploy-pages@v4
+        if: steps.hora.outputs.seguir == 'si'
+        id: desplegar
