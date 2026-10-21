@@ -215,6 +215,15 @@ input[type="search"], select {
 .tachado { color: var(--suave); text-decoration: line-through; }
 .flecha { color: var(--suave); }
 .nota { color: var(--suave); font-size: 17px; }
+/* Línea de Eneba dentro de la ficha (abre Eneba, no la tienda oficial). */
+.eneba {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin-top: 4px; padding: 4px 6px;
+  background: var(--superficie-2); border: 2px dashed var(--suave); cursor: pointer;
+}
+.eneba:hover { border-style: solid; border-color: var(--tinta); }
+.eneba-marca { font: 8px var(--px); color: #fff; background: #7b2ff7; padding: 3px 4px 1px; }
+.eneba b { font: 12px var(--px); font-weight: normal; }
+.eneba-ahorro { color: var(--bien); }
 .resena-buena { color: var(--bien); }
 .resena-mala { color: var(--mal); }
 

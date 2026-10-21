@@ -14,7 +14,7 @@ import sys
 import traceback
 import webbrowser
 
-from fuentes import nintendo, steam, wikipedia
+from fuentes import eneba, nintendo, steam, wikipedia
 from fuentes.comun import normalizar
 
 MESES = 3            # mes actual y los dos anteriores
@@ -26,6 +26,8 @@ RAIZ = pathlib.Path(__file__).parent
 DATOS = RAIZ / "datos"
 SALIDA = DATOS / "juegos.js"
 HISTORIAL = DATOS / "historial.json"
+PRECIOS_ENEBA = DATOS / "eneba.json"
+INDICE_ENEBA = RAIZ / ".cache" / "eneba_indice.json"
 
 
 def leer_json(ruta, defecto):
@@ -89,6 +91,37 @@ def juegos_switch(meses, hoy):
     return juegos
 
 
+def aplicar_eneba(juegos, hoy):
+    """Precio de la clave en Eneba. Los juegos de los últimos meses se miran cada día y los de años
+    anteriores cada semana; si Eneba falla, se quedan los últimos precios conocidos."""
+    guardados = leer_json(PRECIOS_ENEBA, {})
+    try:
+        indice = eneba.cargar_indice(INDICE_ENEBA)
+    except Exception:
+        traceback.print_exc()
+        print("Eneba: no se pudo leer el índice; se usan los precios guardados.")
+        indice = None
+    consultados = 0
+    try:
+        for j in juegos:
+            producto = eneba.producto(j, indice) if indice is not None else next(
+                (p for p, g in guardados.items() if g.get("id") == j["id"]), None)
+            if not producto:
+                continue
+            g = guardados.get(producto)
+            dias = 1 if (hoy - dt.date.fromisoformat(j["fecha"])).days < 120 else 7
+            if indice is not None and (not g or (hoy - dt.date.fromisoformat(g["fecha"])).days >= dias):
+                g = guardados[producto] = {"id": j["id"], "precio": eneba.precio(producto), "fecha": hoy.isoformat()}
+                consultados += 1
+            if g and g["precio"] is not None:
+                j["eneba"] = {"precio": g["precio"], "url": eneba.WEB + producto, "fecha": g["fecha"]}
+    except Exception:
+        traceback.print_exc()
+        print("Eneba ha fallado a medias; se guardan los precios conseguidos.")
+    guardar_json(PRECIOS_ENEBA, guardados)
+    print(f"Eneba: {consultados} precios consultados, {sum('eneba' in j for j in juegos)} juegos con precio")
+
+
 def aplicar_historial(juegos, hoy):
     """Guarda el primer precio visto y el mínimo. Si el juego se vio por primera vez en su primer mes
     a la venta, ese primer precio es su precio de salida real."""
@@ -124,6 +157,7 @@ def main():
             print(f"¡{nombre} ha fallado! Se publican sus datos anteriores ({len(viejos)} juegos).")
 
     aplicar_historial([j for j in juegos if j["plataforma"] not in avisos], hoy)
+    aplicar_eneba(juegos, hoy)
     for j in juegos:
         if j.get("pvp") and j.get("precio") is not None:
             j["descuento"] = round(100 * (1 - j["precio"] / j["pvp"]))

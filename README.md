@@ -8,7 +8,7 @@ mismos meses uno, dos y tres años antes.
 
 - Botones **STEAM / SWITCH** arriba para elegir plataforma (en Switch se puede filtrar Switch o Switch 2).
 - **Novedades**: juegos salidos este mes y los dos anteriores, con su precio de hoy, la rebaja si la hay,
-  las reseñas (Steam) y el enlace a la tienda. Resumen del precio medio y de cuántos están ya rebajados.
+  las reseñas (Steam), el enlace a la tienda y, si existe, el precio de la clave en Eneba. Resumen del precio medio y de cuántos están ya rebajados.
 - **Comparar**: los mismos meses de los tres años anteriores. Tabla por año con el precio medio de
   salida, el de hoy y cuánto más barato está (de media por juego), y la lista de juegos de cada año.
 
@@ -22,6 +22,12 @@ Sin claves ni cuentas:
 - **Switch**: los juegos de Switch y Switch 2 de esas mismas listas de Wikipedia que están en el eShop
   español, más los 10 más populares de cada mes aunque no estén. Así se evita el relleno del eShop
   (packs a 0,99 € con un PVP inflado), que además falsearía las medias. Precio del eShop español.
+
+- **Eneba**: si venden la clave del juego (Steam, o Switch/Switch 2 para Europa), su oferta más barata
+  con existencias, sin la comisión de pago que suman al final. Eneba no tiene API pública: se leen
+  despacio sus páginas públicas (sitemaps para saber qué claves hay, cada semana; y la ficha de cada
+  producto para el precio: cada día los juegos recientes y cada semana los de años anteriores). Si
+  algún día bloquean las descargas, la web sigue mostrando los últimos precios conocidos.
 
 ## Precio de salida
 
@@ -40,7 +46,7 @@ Con el tiempo, la comparación con años anteriores irá usando precios de salid
 py actualizar.py --abrir
 ```
 
-Tarda menos de un minuto. Luego basta con abrir `index.html`.
+Tarda un par de minutos (la primera vez, unos 10: índice de Eneba y precios de todas sus claves). Luego basta con abrir `index.html`.
 
 ## Publicación
 

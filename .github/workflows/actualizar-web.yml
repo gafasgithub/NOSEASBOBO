@@ -42,6 +42,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Índice de productos de Eneba (se rehace cada semana; aquí solo se conserva entre ejecuciones).
+      - uses: actions/cache@v4
+        if: steps.hora.outputs.seguir == 'si'
+        with:
+          path: .cache
+          key: cache-${{ github.run_id }}
+          restore-keys: cache-
+
       - name: Actualizar precios
         if: steps.hora.outputs.seguir == 'si'
         env:

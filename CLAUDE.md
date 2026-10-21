@@ -19,6 +19,12 @@ Nintendo Switch de los últimos meses, y comparación con los mismos meses de a�
   quedan los que están en Wikipedia (NS/NS2) y los `SWITCH_POPULARES` primeros; precio en
   `api.ec.nintendo.com/v1/price` (el del buscador está desfasado). Un juego tiene varios nsuid: 7001 =
   juego, 7007 = packs, 7005 = mejoras de Switch 2 (se ignoran). Consola: HAC = Switch, BEE = Switch 2.
+- `fuentes/eneba.py`: sin API. Índice de los sitemaps `es/sitemap/products*.xml` en
+  `.cache/eneba_indice.json` (7 días; en Actions con actions/cache). URL de clave: `steam-<slug>-(pc-steam-key|
+  steam-key-pc|steam-pc-key)-<región>` o `nintendo-<slug>-nintendo-switch[-2]-eshop-key-<región>`; regiones
+  válidas en `REGIONES`. Precio: mínimo de los `Auction:` con existencias del `__APOLLO_STATE__` de la
+  ficha. Precios en `datos/eneba.json` (recientes cada día, el resto cada 7). Pausa 1,5 s. La línea de
+  Eneba está dentro de la ficha `<a>`: abre con `data-eneba` + JS (no se pueden anidar enlaces).
 - `datos/historial.json`: primer precio visto (`pvp`, `visto`) y mínimo de cada juego. Si `visto` está a
   ≤31 días de la salida, ese PVP es el precio de salida (`salida`); si no, la web usa el PVP actual.
 - `js/app.js`: interfaz. Estado en `localStorage` (`noseasbobo.v1`, tema en `noseasbobo.tema`).

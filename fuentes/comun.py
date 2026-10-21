@@ -7,7 +7,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-AGENTE = "NOSEASBOBO/1.0 (https://github.com/gafasgithub/noseasbobo)"
+AGENTE = "NOSEASBOBO/1.0 (https://github.com/gafasgithub/NOSEASBOBO)"
 
 # Pausa mínima entre peticiones al mismo servidor (segundos), para no recibir bloqueos.
 PAUSA = {
@@ -15,6 +15,7 @@ PAUSA = {
     "en.wikipedia.org": 0.5,
     "searching.nintendo-europe.com": 0.3,
     "api.ec.nintendo.com": 0.5,
+    "www.eneba.com": 1.5,
 }
 _ultima = {}
 

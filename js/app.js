@@ -48,6 +48,8 @@ const sinAcentos = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 const referencia = j => j.salida ?? j.pvp;
 const dePago = j => j.precio != null && referencia(j) > 0;
 const ahorro = j => dePago(j) ? 1 - j.precio / referencia(j) : null;
+// Ahorro de la clave de Eneba frente al precio de hoy en la tienda oficial (negativo si es más cara).
+const ahorroEneba = j => j.eneba && j.precio > 0 ? 1 - j.eneba.precio / j.precio : null;
 const media = lista => lista.length ? lista.reduce((a, b) => a + b, 0) / lista.length : null;
 
 function juegosDe(plataforma = estado.plataforma) {
@@ -65,6 +67,7 @@ const ORDENES = {
   ahorro: ['Más rebajados', (a, b) => (ahorro(b) ?? -1) - (ahorro(a) ?? -1)],
   fecha: ['Más recientes', (a, b) => b.fecha.localeCompare(a.fecha)],
   caro: ['Más caros de salida', (a, b) => (referencia(b) ?? -1) - (referencia(a) ?? -1)],
+  eneba: ['Más ahorro en Eneba', (a, b) => (ahorroEneba(b) ?? -2) - (ahorroEneba(a) ?? -2)],
 };
 
 function selectorOrden(id, valor) {
@@ -101,6 +104,7 @@ function bloquePrecios(j, comparando) {
     if (rebajado) html += `<span class="tachado">${euros(ref)}</span>`;
   }
   html += '</div>';
+  html += lineaEneba(j);
   if (j.minimo != null && j.minimo < j.precio) {
     html += `<div class="nota">Mínimo visto: ${euros(j.minimo)} (desde ${fechaCorta(j.minimo_desde)})</div>`;
   }
@@ -123,6 +127,16 @@ function portada(j) {
   const relleno = `<div class="sin-portada ${j.plataforma}"><span>${esc(j.titulo)}</span></div>`;
   if (!lista.length) return relleno;
   return relleno + `<img src="${esc(lista[0])}" alt="" loading="lazy" data-id="${esc(j.id)}" data-i="0" onerror="siguienteImagen(this)">`;
+}
+
+// La ficha entera es un enlace a la tienda oficial; la línea de Eneba abre Eneba (ver el clic más abajo).
+function lineaEneba(j) {
+  if (!j.eneba) return '';
+  const a = ahorroEneba(j);
+  const comparacion = a == null ? '' : a >= 0.01 ? `<span class="eneba-ahorro">-${pct(a)} que la tienda</span>`
+    : '<span class="nota">no sale más barato</span>';
+  return `<div class="eneba" role="link" tabindex="0" data-eneba="${esc(j.eneba.url)}" title="Ver la clave en Eneba">
+    <span class="eneba-marca">ENEBA</span><b>${euros(j.eneba.precio)}</b>${comparacion}</div>`;
 }
 
 function ficha(j, comparando = false) {
@@ -164,6 +178,7 @@ function pintarNovedades() {
 
   const pago = delMes.filter(dePago);
   const rebajados = pago.filter(j => ahorro(j) >= 0.01);
+  const enEneba = delMes.filter(j => ahorroEneba(j) >= 0.01);
   const opciones = [['', `Todos (${todos.length})`],
     ...DATOS.meses.map(m => [m, `${capital(nombreMes(m))} (${todos.filter(j => j.fecha.startsWith(m)).length})`])];
 
@@ -177,6 +192,7 @@ function pintarNovedades() {
       ${casilla(pago.length ? euros(media(pago.map(referencia))) : '—', 'precio medio de salida')}
       ${casilla(pago.length ? pct(rebajados.length / pago.length) : '—', 'ya están rebajados', rebajados.length > 0)}
       ${casilla(rebajados.length ? '-' + pct(media(rebajados.map(ahorro))) : '—', 'rebaja media de los rebajados', rebajados.length > 0)}
+      ${casilla(enEneba.length ? '-' + pct(media(enEneba.map(ahorroEneba))) : '—', `ahorro medio en Eneba (${enEneba.length} más baratos allí)`, enEneba.length > 0)}
     </div>
     <div class="herramientas">
       <input type="search" id="buscar" placeholder="Buscar juego…" value="${esc(estado.busqueda)}">
@@ -283,7 +299,18 @@ function repintarConservandoBusqueda() {
   if (enfocado) { const c = $('#buscar'); c.focus(); c.setSelectionRange(pos, pos); }
 }
 
+function abrirEneba(e) {
+  const linea = e.target.closest('[data-eneba]');
+  if (!linea) return false;
+  e.preventDefault();
+  window.open(linea.dataset.eneba, '_blank', 'noopener');
+  return true;
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Enter') abrirEneba(e); });
+
 document.addEventListener('click', e => {
+  if (abrirEneba(e)) return;
   const b = e.target.closest('button, tr[data-atras]');
   if (!b) return;
   const d = b.dataset;
