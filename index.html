@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>No seas bobo</title>
-  <meta name="description" content="Precio de hoy de los lanzamientos de Steam y Nintendo Switch de los últimos meses, y cuánto han bajado los de los mismos meses de años anteriores.">
+  <meta name="description" content="Precio de hoy de los lanzamientos de Steam, Nintendo Switch y Xbox (con Game Pass) de los últimos meses, y cuánto han bajado los de los mismos meses de años anteriores.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='%231b1838' d='M2 4h12v1h1v6h-1v1H2v-1H1V5h1z'/><path fill='%23ffcc33' d='M2 5h12v6H2z'/><path fill='%231b1838' d='M4 6h1v1h1v1H5v1H4V8H3V7h1z M10 6h1v1h-1z M12 8h1v1h-1z'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@
             <path fill="#ffcc33" d="M4 1h4v1h2v2h1v4h-1v2H8v1H4v-1H2V8H1V4h1V2h2z"/>
             <path fill="#c98a00" d="M5 3h2v1h1v1H7V4H5v1h2v1h1v2H7v1H5V8H4V7h1v1h2V7H5V6H4V4h1z"/>
           </svg>
-          STEAM Y SWITCH &middot; PRECIOS DE HOY
+          STEAM, SWITCH Y XBOX &middot; PRECIOS DE HOY
         </div>
         <h1>NO SEAS BOBO</h1>
         <p class="sub">¿Comprar de salida o esperar? Lo que cuestan hoy los juegos de los últimos meses y cuánto han bajado los de años anteriores.</p>
@@ -68,11 +68,17 @@
     <div class="plataformas" role="group" aria-label="Plataforma">
       <button type="button" data-plataforma="steam" class="steam">STEAM</button>
       <button type="button" data-plataforma="switch" class="switch">SWITCH</button>
+      <button type="button" data-plataforma="xbox" class="xbox">XBOX</button>
     </div>
     <div class="filtros" id="consolas" role="group" aria-label="Consola" hidden>
       <button type="button" data-consola="">Todas</button>
       <button type="button" data-consola="Switch">Switch</button>
       <button type="button" data-consola="Switch 2">Switch 2</button>
+    </div>
+    <div class="filtros" id="gamepass" role="group" aria-label="Game Pass" hidden>
+      <button type="button" data-gamepass="">Todos</button>
+      <button type="button" data-gamepass="si">En Game Pass</button>
+      <button type="button" data-gamepass="no">Sin Game Pass</button>
     </div>
   </div>
 
@@ -82,7 +88,7 @@
   </main>
 
   <footer class="pie">
-    Datos: listas de lanzamientos de Wikipedia, tienda de Steam (España) y eShop de Nintendo (España).
+    Datos: listas de lanzamientos de Wikipedia, tienda de Steam, eShop de Nintendo y tienda de Xbox (España).
     Los precios son los de la tienda digital el día de la actualización.
   </footer>
 

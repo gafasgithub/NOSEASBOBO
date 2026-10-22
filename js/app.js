@@ -13,6 +13,7 @@ const estado = {
   pestana: 'novedades',
   plataforma: 'steam',
   consola: '',
+  gamepass: '',       // xbox: '' = todos, 'si' = en Game Pass, 'no' = fuera de Game Pass
   mes: '',            // novedades: '' = todos o 'AAAA-MM'
   orden: 'popular',
   busqueda: '',
@@ -24,13 +25,13 @@ const estado = {
 };
 try {
   const guardado = JSON.parse(localStorage.getItem('noseasbobo.v1') || '{}');
-  for (const k of ['plataforma', 'consola', 'orden', 'atras', 'ordenComparar']) if (k in guardado) estado[k] = guardado[k];
+  for (const k of ['plataforma', 'consola', 'gamepass', 'orden', 'atras', 'ordenComparar']) if (k in guardado) estado[k] = guardado[k];
 } catch (e) { /* sin almacenamiento */ }
 
 function guardar() {
   try {
-    const { plataforma, consola, orden, atras, ordenComparar } = estado;
-    localStorage.setItem('noseasbobo.v1', JSON.stringify({ plataforma, consola, orden, atras, ordenComparar }));
+    const { plataforma, consola, gamepass, orden, atras, ordenComparar } = estado;
+    localStorage.setItem('noseasbobo.v1', JSON.stringify({ plataforma, consola, gamepass, orden, atras, ordenComparar }));
   } catch (e) { /* sin almacenamiento */ }
 }
 
@@ -50,15 +51,23 @@ const dePago = j => j.precio != null && referencia(j) > 0;
 const ahorro = j => dePago(j) ? 1 - j.precio / referencia(j) : null;
 // Ahorro de la clave de Eneba frente al precio de hoy en la tienda oficial (negativo si es más cara).
 const ahorroEneba = j => j.eneba && j.precio > 0 ? 1 - j.eneba.precio / j.precio : null;
+const enGamePass = j => j.gamepass?.length > 0;
 const media = lista => lista.length ? lista.reduce((a, b) => a + b, 0) / lista.length : null;
+
+const PLATAFORMAS = {
+  steam: { nombre: 'Steam', explica: 'Los 40 con más reseñas de cada mes (en Steam, más reseñas = más ventas).' },
+  switch: { nombre: 'Nintendo Switch', explica: 'Los que Wikipedia recoge como lanzamientos destacados y los 10 más populares de cada mes en el eShop.' },
+  xbox: { nombre: 'Xbox', explica: 'Los 40 con más valoraciones de cada mes en la tienda de Xbox y todos los que están hoy en Game Pass.' },
+};
 
 function juegosDe(plataforma = estado.plataforma) {
   return DATOS.juegos.filter(j => j.plataforma === plataforma
-    && (plataforma !== 'switch' || !estado.consola || j.consola === estado.consola));
+    && (plataforma !== 'switch' || !estado.consola || j.consola === estado.consola)
+    && (plataforma !== 'xbox' || !estado.gamepass || enGamePass(j) === (estado.gamepass === 'si')));
 }
 
 function popularidad(j) {
-  return j.plataforma === 'steam' ? -(j.resenas?.total || 0) : (j.popularidad ?? 1e9);
+  return j.plataforma === 'switch' ? (j.popularidad ?? 1e9) : -(j.resenas?.total || 0);
 }
 
 const ORDENES = {
@@ -85,6 +94,10 @@ function filtrosMes(opciones, valor, atributo) {
 function lineaResenas(j) {
   const r = j.resenas;
   if (!r || !r.total) return '';
+  if (r.nota != null) {  // Xbox: nota media de 1 a 5
+    const clase = r.nota >= 4 ? 'resena-buena' : r.nota < 2.5 ? 'resena-mala' : '';
+    return `<div class="juego-dato"><span class="${clase}">${r.nota.toLocaleString('es-ES', { maximumFractionDigits: 1 })}/5</span> · ${r.total.toLocaleString('es-ES')} valoraciones</div>`;
+  }
   const clase = r.pct >= 80 ? 'resena-buena' : r.pct < 50 ? 'resena-mala' : '';
   return `<div class="juego-dato"><span class="${clase}">${r.pct}% ${esc(r.desc || '')}</span> · ${r.total.toLocaleString('es-ES')} reseñas</div>`;
 }
@@ -143,13 +156,16 @@ function ficha(j, comparando = false) {
   const a = ahorro(j);
   const rebaja = a != null && a >= 0.01 ? `<span class="rebaja">-${pct(a)}</span>` : '';
   const chapa = j.plataforma === 'switch'
-    ? `<span class="chapa${j.consola === 'Switch 2' ? ' s2' : ''}">${j.consola === 'Switch 2' ? 'SWITCH 2' : 'SWITCH'}</span>` : '';
+    ? `<span class="chapa${j.consola === 'Switch 2' ? ' s2' : ''}">${j.consola === 'Switch 2' ? 'SWITCH 2' : 'SWITCH'}</span>`
+    : enGamePass(j) ? '<span class="chapa gp">GAME PASS</span>' : '';
+  const pases = enGamePass(j) ? `<div class="juego-dato gamepass">En Game Pass ${esc(j.gamepass.join(' · '))}</div>` : '';
   return `<a class="juego" href="${esc(j.url)}" target="_blank" rel="noopener">
     <div class="portada">${portada(j)}${chapa}${rebaja}</div>
     <div class="juego-cuerpo">
       <div class="juego-titulo">${esc(j.titulo)}</div>
       <div class="juego-dato">${fechaCorta(j.fecha)}${j.editor ? ' · ' + esc(j.editor) : ''}</div>
       ${lineaResenas(j)}
+      ${pases}
       ${bloquePrecios(j, comparando)}
     </div>
   </a>`;
@@ -179,20 +195,22 @@ function pintarNovedades() {
   const pago = delMes.filter(dePago);
   const rebajados = pago.filter(j => ahorro(j) >= 0.01);
   const enEneba = delMes.filter(j => ahorroEneba(j) >= 0.01);
+  const xbox = estado.plataforma === 'xbox';
   const opciones = [['', `Todos (${todos.length})`],
     ...DATOS.meses.map(m => [m, `${capital(nombreMes(m))} (${todos.filter(j => j.fecha.startsWith(m)).length})`])];
 
   $('#novedades').innerHTML = `
     <h2>LANZAMIENTOS DE LOS ULTIMOS MESES</h2>
-    <p class="explica">Juegos que han salido en ${estado.plataforma === 'steam' ? 'Steam' : 'Nintendo Switch'} y lo que cuestan hoy.
-      ${estado.plataforma === 'steam' ? 'Los 40 con más reseñas de cada mes (en Steam, más reseñas = más ventas).' : 'Los que Wikipedia recoge como lanzamientos destacados y los 10 más populares de cada mes en el eShop.'}</p>
+    <p class="explica">Juegos que han salido en ${PLATAFORMAS[estado.plataforma].nombre} y lo que cuestan hoy.
+      ${PLATAFORMAS[estado.plataforma].explica}</p>
     ${filtrosMes(opciones, estado.mes, 'mes')}
     <div class="resumen" style="margin-top:16px">
       ${casilla(delMes.length, 'juegos')}
       ${casilla(pago.length ? euros(media(pago.map(referencia))) : '—', 'precio medio de salida')}
       ${casilla(pago.length ? pct(rebajados.length / pago.length) : '—', 'ya están rebajados', rebajados.length > 0)}
       ${casilla(rebajados.length ? '-' + pct(media(rebajados.map(ahorro))) : '—', 'rebaja media de los rebajados', rebajados.length > 0)}
-      ${casilla(enEneba.length ? '-' + pct(media(enEneba.map(ahorroEneba))) : '—', `ahorro medio en Eneba (${enEneba.length} más baratos allí)`, enEneba.length > 0)}
+      ${xbox ? casilla(delMes.filter(enGamePass).length, 'están hoy en Game Pass', delMes.some(enGamePass))
+        : casilla(enEneba.length ? '-' + pct(media(enEneba.map(ahorroEneba))) : '—', `ahorro medio en Eneba (${enEneba.length} más baratos allí)`, enEneba.length > 0)}
     </div>
     <div class="herramientas">
       <input type="search" id="buscar" placeholder="Buscar juego…" value="${esc(estado.busqueda)}">
@@ -235,7 +253,7 @@ function pintarComparar() {
     });
   }
   const maxAhorro = Math.max(0.01, ...filas.map(f => f.ahorro || 0));
-  const plataforma = estado.plataforma === 'steam' ? 'STEAM' : 'SWITCH';
+  const plataforma = estado.plataforma.toUpperCase();
   const elegida = filas.find(f => f.atras === estado.atras) || filas[1] || filas[0];
   const nombresMeses = mesesComparados(0).map(m => MESES[+m.slice(5) - 1]);
   const textoMeses = nombresMeses.length > 1 ? nombresMeses.slice(0, -1).join(', ') + ' y ' + nombresMeses.at(-1) : nombresMeses[0];
@@ -289,6 +307,8 @@ function pintar() {
   document.querySelectorAll('[data-plataforma]').forEach(b => b.setAttribute('aria-pressed', b.dataset.plataforma === estado.plataforma));
   $('#consolas').hidden = estado.plataforma !== 'switch';
   document.querySelectorAll('[data-consola]').forEach(b => b.setAttribute('aria-pressed', b.dataset.consola === estado.consola));
+  $('#gamepass').hidden = estado.plataforma !== 'xbox';
+  document.querySelectorAll('[data-gamepass]').forEach(b => b.setAttribute('aria-pressed', b.dataset.gamepass === estado.gamepass));
   if (estado.pestana === 'novedades') pintarNovedades(); else pintarComparar();
 }
 
@@ -317,6 +337,7 @@ document.addEventListener('click', e => {
   if (d.pestana) estado.pestana = d.pestana;
   else if (d.plataforma) { estado.plataforma = d.plataforma; estado.visibles = estado.visiblesComparar = POR_PAGINA; }
   else if ('consola' in d) estado.consola = d.consola;
+  else if ('gamepass' in d) { estado.gamepass = d.gamepass; estado.visibles = estado.visiblesComparar = POR_PAGINA; }
   else if ('mes' in d) { estado.mes = d.mes; estado.visibles = POR_PAGINA; }
   else if ('mesComparar' in d) estado.mesComparar = d.mesComparar;
   else if ('atras' in d) { estado.atras = +d.atras; estado.visiblesComparar = POR_PAGINA; }
@@ -364,8 +385,9 @@ rotularTema();
 // El enlace dice pestaña y plataforma: #comparar/switch
 for (const parte of location.hash.slice(1).split('/')) {
   if (parte === 'novedades' || parte === 'comparar') estado.pestana = parte;
-  if (parte === 'steam' || parte === 'switch') estado.plataforma = parte;
+  if (PLATAFORMAS[parte]) estado.plataforma = parte;
 }
+if (!PLATAFORMAS[estado.plataforma]) estado.plataforma = 'steam';
 if (!(estado.atras >= 1 && estado.atras <= DATOS.anios_atras)) estado.atras = 1;
 if (!ORDENES[estado.orden]) estado.orden = 'popular';
 if (!ORDENES[estado.ordenComparar]) estado.ordenComparar = 'ahorro';

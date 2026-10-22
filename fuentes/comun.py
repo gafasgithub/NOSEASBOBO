@@ -1,6 +1,7 @@
 """Utilidades compartidas: descargas con reintentos y pausas, y normalización de títulos."""
 import json
 import re
+import threading
 import time
 import unicodedata
 import urllib.error
@@ -16,16 +17,20 @@ PAUSA = {
     "searching.nintendo-europe.com": 0.3,
     "api.ec.nintendo.com": 0.5,
     "www.eneba.com": 4.0,   # con 1,5 s Cloudflare corta con 429 tras unas decenas de fichas
+    "emerald.xboxservices.com": 0.25,  # se pide en paralelo (cada página tarda unos 4 s)
 }
 _ultima = {}
+_cerrojo = threading.Lock()  # varias descargas a la vez (Xbox) comparten las pausas
 
 
 def _esperar(host):
     pausa = PAUSA.get(host, 0.3)
-    falta = _ultima.get(host, 0) + pausa - time.monotonic()
+    with _cerrojo:
+        turno = max(time.monotonic(), _ultima.get(host, 0) + pausa)
+        _ultima[host] = turno
+    falta = turno - time.monotonic()
     if falta > 0:
         time.sleep(falta)
-    _ultima[host] = time.monotonic()
 
 
 def _leer(peticion, limite):
@@ -43,15 +48,18 @@ def _leer(peticion, limite):
                 raise TimeoutError(f"más de {limite} s descargando")
 
 
-def descargar(url, params=None, intentos=4, limite=90):
-    """Devuelve el texto de la URL. Reintenta con espera creciente si hay 429 o errores del servidor."""
+def descargar(url, params=None, intentos=4, limite=90, cuerpo=None, cabeceras=None):
+    """Devuelve el texto de la URL (POST con `cuerpo` en JSON si lo hay). Reintenta con espera
+    creciente si hay 429 o errores del servidor."""
     if params:
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
     host = urllib.parse.urlsplit(url).hostname
     for intento in range(intentos):
         _esperar(host)
         try:
-            return _leer(urllib.request.Request(url, headers={"User-Agent": AGENTE}), limite)
+            datos = None if cuerpo is None else json.dumps(cuerpo).encode()
+            peticion = urllib.request.Request(url, data=datos, headers={"User-Agent": AGENTE, **(cabeceras or {})})
+            return _leer(peticion, limite)
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or intento == intentos - 1:
                 raise
@@ -66,8 +74,8 @@ def descargar(url, params=None, intentos=4, limite=90):
         time.sleep(espera)
 
 
-def descargar_json(url, params=None):
-    return json.loads(descargar(url, params))
+def descargar_json(url, params=None, cuerpo=None, cabeceras=None):
+    return json.loads(descargar(url, params, cuerpo=cuerpo, cabeceras=cabeceras))
 
 
 def normalizar(titulo):

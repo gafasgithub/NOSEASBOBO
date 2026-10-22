@@ -1,5 +1,6 @@
 """Actualiza los datos de la web: lanzamientos de los últimos meses (y de los mismos meses de años
-anteriores) en Steam y Nintendo Switch, con su precio de hoy en las tiendas españolas.
+anteriores) en Steam, Nintendo Switch y Xbox, con su precio de hoy en las tiendas españolas y, en
+Xbox, si están hoy en Game Pass.
 
     py actualizar.py            # genera datos/juegos.js
     py actualizar.py --abrir    # y abre la web
@@ -16,13 +17,14 @@ import traceback
 import urllib.error
 import webbrowser
 
-from fuentes import eneba, nintendo, steam, wikipedia
+from fuentes import eneba, nintendo, steam, wikipedia, xbox
 from fuentes.comun import normalizar
 
 MESES = 3            # mes actual y los dos anteriores
 ANIOS_ATRAS = 3      # para comparar con los mismos meses de años anteriores
 STEAM_POR_MES = 40   # de Steam, los 40 con más reseñas de cada mes
 SWITCH_POPULARES = 10  # de Switch entran los de Wikipedia y, aunque no estén, los 10 más populares del mes
+XBOX_POR_MES = 40    # de Xbox, los 40 con más valoraciones de cada mes y todos los de Game Pass
 
 RAIZ = pathlib.Path(__file__).parent
 DATOS = RAIZ / "datos"
@@ -91,6 +93,12 @@ def juegos_switch(meses, hoy):
         j["pvp"], j["precio"] = precio if precio else (None, None)
         j["gratis"] = precio is not None and precio[0] == 0
         del j["nsuids"]
+    return juegos
+
+
+def juegos_xbox(meses, hoy):
+    juegos = xbox.lanzamientos(meses, hoy, XBOX_POR_MES)
+    print(f"Xbox: {len(juegos)} juegos, {sum(bool(j['gamepass']) for j in juegos)} en Game Pass")
     return juegos
 
 
@@ -165,7 +173,9 @@ def main():
     meses = periodos(hoy)
     anteriores = datos_anteriores()
     juegos, avisos = [], []
-    for nombre, obtener in (("steam", lambda: juegos_steam(set(meses), hoy)), ("switch", lambda: juegos_switch(meses, hoy))):
+    fuentes = (("steam", lambda: juegos_steam(set(meses), hoy)), ("switch", lambda: juegos_switch(meses, hoy)),
+               ("xbox", lambda: juegos_xbox(set(meses), hoy)))
+    for nombre, obtener in fuentes:
         try:
             juegos += obtener()
         except Exception:

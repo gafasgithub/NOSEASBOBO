@@ -16,6 +16,7 @@
   --mal: #d8414a;
   --steam: #1b6fd1;
   --switch: #e60012;
+  --xbox: #107c10;
   --punto: rgba(27, 24, 56, 0.09);
   color-scheme: light;
 }
@@ -31,6 +32,7 @@
   --mal: #ff5c6c;
   --steam: #4f9cf0;
   --switch: #ff4d5e;
+  --xbox: #3fbf3f;
   --punto: rgba(241, 236, 255, 0.07);
   color-scheme: dark;
 }
@@ -138,6 +140,7 @@ svg.pixel { shape-rendering: crispEdges; }
 .plataformas button { font-size: 13px; padding: 14px 18px; }
 .plataformas button.steam[aria-pressed="true"] { background: var(--steam); color: #fff; }
 .plataformas button.switch[aria-pressed="true"] { background: var(--switch); color: #fff; }
+.plataformas button.xbox[aria-pressed="true"] { background: var(--xbox); color: #fff; }
 
 .filtros { display: flex; flex-wrap: wrap; border: 3px solid var(--tinta); background: var(--superficie); }
 .filtros button { font: 20px var(--txt); background: none; border: 0; padding: 4px 12px; color: var(--suave); }
@@ -196,12 +199,15 @@ input[type="search"], select {
 }
 .sin-portada.steam { background-color: #1b2838; }
 .sin-portada.switch { background-color: #8c0010; }
+.sin-portada.xbox { background-color: #0b4a0b; }
 .sin-portada span { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 2px 2px 0 #000; }
 .portada .chapa {
   position: absolute; top: 6px; left: 6px; padding: 4px 5px 2px; font: 8px var(--px);
   background: var(--tinta); color: var(--fondo);
 }
 .portada .chapa.s2 { background: var(--switch); color: #fff; }
+.portada .chapa.gp { background: #107c10; color: #fff; }
+.juego-dato.gamepass { color: var(--xbox); }
 .rebaja {
   position: absolute; top: 6px; right: 6px; padding: 5px 6px 3px; font: 11px var(--px);
   background: var(--oro); color: #1b1838; border: 3px solid #1b1838;
@@ -254,6 +260,7 @@ input[type="search"], select {
   .hero-contenido { grid-template-columns: 1fr; }
   .escena { display: none; }
   .plataformas { flex: 1 1 100%; }
-  .plataformas button { flex: 1; }
+  .plataformas { gap: 8px; }
+  .plataformas button { flex: 1; min-width: 0; padding: 14px 6px; font-size: 11px; }
   .tabla-anios .ocultable { display: none; }
 }

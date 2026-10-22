@@ -1,7 +1,7 @@
 # NOSEASBOBO
 
-Web estática (HTML + CSS + JS sin compilación) con el precio de hoy de los lanzamientos de Steam y
-Nintendo Switch de los últimos meses, y comparación con los mismos meses de años anteriores. Ver README.md.
+Web estática (HTML + CSS + JS sin compilación) con el precio de hoy de los lanzamientos de Steam,
+Nintendo Switch y Xbox (marcando los que están en Game Pass) de los últimos meses, y comparación con los mismos meses de años anteriores. Ver README.md.
 
 ## Estructura
 
@@ -19,6 +19,15 @@ Nintendo Switch de los últimos meses, y comparación con los mismos meses de a�
   quedan los que están en Wikipedia (NS/NS2) y los `SWITCH_POPULARES` primeros; precio en
   `api.ec.nintendo.com/v1/price` (el del buscador está desfasado). Un juego tiene varios nsuid: 7001 =
   juego, 7007 = packs, 7005 = mejoras de Switch 2 (se ignoran). Consola: HAC = Switch, BEE = Switch 2.
+- `fuentes/xbox.py`: POST a `emerald.xboxservices.com/xboxcomfd/browse` (pide las cabeceras `MS-CV` y
+  `x-ms-api-version`), `ReleaseDate desc`, 25 por página, ~4 s cada una. El `EncodedCT` es base64 de
+  `{SkipCount, TotalCount}`: se salta a cualquier posición. Hay que mandar el `TotalCount` real (con uno
+  falso da 500). Se tantea dónde empieza cada tramo de meses y se lee en paralelo (`HILOS`; `comun.py`
+  reparte las pausas con un cerrojo). Game Pass = `includedWithPassesProductIds` (coincide con
+  `catalog.gamepass.com/sigls`): K6L8 consola, KGQ8 PC, P85B Premium, K5DJ Essential, K5DH EA Play,
+  KHS0 Ultimate; QH5H es Ubisoft+ (no cuenta). Ediciones y lotes son productos aparte con las mismas
+  valoraciones: `RE_REEDICION` los quita y se agrupan por `xboxTitleId` (o editor + valoraciones + nota).
+  Fecha = `releaseDate` + 2 h (la tienda da la medianoche española en UTC). Xbox no tiene Eneba aún.
 - `fuentes/eneba.py`: sin API. Índice de los sitemaps `es/sitemap/products*.xml` en
   `.cache/eneba_indice.json` (7 días; en Actions con actions/cache). URL de clave: `steam-<slug>-(pc-steam-key|
   steam-key-pc|steam-pc-key)-<región>` o `nintendo-<slug>-nintendo-switch[-2]-eshop-key-<región>`; regiones

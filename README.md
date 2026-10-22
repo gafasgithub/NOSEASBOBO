@@ -1,12 +1,13 @@
 # No seas bobo
 
 ¿Comprar un juego de salida o esperar? Web con lo que cuestan hoy los lanzamientos de los últimos
-meses en **Steam** (PC) y **Nintendo Switch / Switch 2**, y cuánto han bajado los que salieron en esos
+meses en **Steam** (PC), **Nintendo Switch / Switch 2** y **Xbox** (con los que están en Game Pass), y cuánto han bajado los que salieron en esos
 mismos meses uno, dos y tres años antes.
 
 ## Qué tiene
 
-- Botones **STEAM / SWITCH** arriba para elegir plataforma (en Switch se puede filtrar Switch o Switch 2).
+- Botones **STEAM / SWITCH / XBOX** arriba para elegir plataforma (en Switch se puede filtrar Switch o Switch 2;
+  en Xbox, los que están hoy en Game Pass o los que no).
 - **Novedades**: juegos salidos este mes y los dos anteriores, con su precio de hoy, la rebaja si la hay,
   las reseñas (Steam), el enlace a la tienda y, si existe, el precio de la clave en Eneba. Resumen del precio medio y de cuántos están ya rebajados.
 - **Comparar**: los mismos meses de los tres años anteriores. Tabla por año con el precio medio de
@@ -22,6 +23,10 @@ Sin claves ni cuentas:
 - **Switch**: los juegos de Switch y Switch 2 de esas mismas listas de Wikipedia que están en el eShop
   español, más los 10 más populares de cada mes aunque no estén. Así se evita el relleno del eShop
   (packs a 0,99 € con un PVP inflado), que además falsearía las medias. Precio del eShop español.
+- **Xbox**: el buscador de xbox.com (España), ordenado por fecha de salida. De cada mes se quedan los 40
+  con más valoraciones y todos los que están hoy en Game Pass (Ultimate, PC, Premium, Essential o EA Play).
+  Las ediciones Deluxe, lotes y recopilatorios se quitan o se juntan con el juego base. Unas 180 peticiones
+  (4-5 minutos, varias a la vez).
 
 - **Eneba**: si venden la clave del juego (Steam, o Switch/Switch 2 para Europa), su oferta más barata
   con existencias, sin la comisión de pago que suman al final. Eneba no tiene API pública: se leen
