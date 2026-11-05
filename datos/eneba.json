@@ -45,7 +45,7 @@
   "precio": null
  },
  "steam-deadly-days-roadtrip-steam-key-pc-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:3026450",
   "precio": null
  },
@@ -94,8 +94,13 @@
   "id": "steam:3883570",
   "precio": null
  },
+ "steam-lightyear-frontier-pc-steam-key-global": {
+  "fecha": "2026-11-05",
+  "id": "steam:1677110",
+  "precio": null
+ },
  "steam-moon-sweepers-steam-key-pc-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:5335510",
   "precio": null
  },
@@ -145,7 +150,7 @@
   "precio": null
  },
  "steam-phantom-blade-zero-steam-key-pc-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:4115450",
   "precio": null
  },
@@ -155,7 +160,7 @@
   "precio": null
  },
  "steam-probably-stolen-cyberpunk-shopkeeper-sim-steam-key-pc-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:4348910",
   "precio": null
  },
@@ -165,12 +170,12 @@
   "precio": null
  },
  "steam-reka-pc-steam-key-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:1737870",
   "precio": null
  },
  "steam-repel-the-rifts-steam-key-pc-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:3686580",
   "precio": null
  },
@@ -180,7 +185,7 @@
   "precio": null
  },
  "steam-silica-pc-steam-key-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:1494420",
   "precio": null
  },
@@ -195,7 +200,7 @@
   "precio": null
  },
  "steam-sulfur-pc-steam-key-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:2124120",
   "precio": null
  },
@@ -205,7 +210,7 @@
   "precio": null
  },
  "steam-tape-to-tape-pc-steam-key-global": {
-  "fecha": "2026-11-04",
+  "fecha": "2026-11-05",
   "id": "steam:1566200",
   "precio": null
  },
@@ -232,6 +237,11 @@
  "steam-valor-mortis-steam-key-pc-global": {
   "fecha": "2026-10-25",
   "id": "steam:2828710",
+  "precio": null
+ },
+ "steam-void-breaker-steam-pc-key-global": {
+  "fecha": "2026-11-05",
+  "id": "steam:2615540",
   "precio": null
  },
  "steam-warhammer-40-000-boltgun-2-steam-key-pc-global": {
