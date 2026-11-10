@@ -600,8 +600,8 @@
   "visto": "2026-10-24"
  },
  "steam:1574900": {
-  "fecha_minimo": "2026-11-01",
-  "minimo": 16.79,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 8.39,
   "pvp": 16.79,
   "visto": "2026-11-01"
  },
@@ -744,8 +744,8 @@
   "visto": "2026-10-21"
  },
  "steam:1658040": {
-  "fecha_minimo": "2026-11-01",
-  "minimo": 19.5,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.8,
   "pvp": 19.5,
   "visto": "2026-11-01"
  },
@@ -762,8 +762,8 @@
   "visto": "2026-10-21"
  },
  "steam:1676840": {
-  "fecha_minimo": "2026-11-06",
-  "minimo": 24.28,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.49,
   "pvp": 24.99,
   "visto": "2026-11-01"
  },
@@ -1134,8 +1134,8 @@
   "visto": "2026-10-21"
  },
  "steam:1968840": {
-  "fecha_minimo": "2026-10-21",
-  "minimo": 10.79,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.55,
   "pvp": 10.79,
   "visto": "2026-10-21"
  },
@@ -1416,8 +1416,8 @@
   "visto": "2026-11-01"
  },
  "steam:2181610": {
-  "fecha_minimo": "2026-10-27",
-  "minimo": 9.66,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 4.87,
   "pvp": 9.75,
   "visto": "2026-10-21"
  },
@@ -3053,6 +3053,12 @@
   "pvp": 14.99,
   "visto": "2026-10-21"
  },
+ "steam:3629430": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 18.44,
+  "pvp": 20.49,
+  "visto": "2026-11-10"
+ },
  "steam:3631290": {
   "fecha_minimo": "2026-10-21",
   "minimo": 7.79,
@@ -3497,6 +3503,12 @@
   "pvp": 5.99,
   "visto": "2026-11-06"
  },
+ "steam:4576490": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 18.69,
+  "pvp": 21.99,
+  "visto": "2026-11-10"
+ },
  "steam:4596210": {
   "fecha_minimo": "2026-11-02",
   "minimo": 6.87,
@@ -3894,8 +3906,8 @@
   "visto": "2026-10-21"
  },
  "steam:892970": {
-  "fecha_minimo": "2026-10-21",
-  "minimo": 29.99,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 26.99,
   "pvp": 29.99,
   "visto": "2026-10-21"
  },
@@ -5147,6 +5159,12 @@
   "pvp": 24.49,
   "visto": "2026-11-01"
  },
+ "switch:2468994": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.79,
+  "pvp": 19.49,
+  "visto": "2026-11-10"
+ },
  "switch:2469587": {
   "fecha_minimo": "2026-11-01",
   "minimo": 9.99,
@@ -5188,6 +5206,12 @@
   "minimo": 13.65,
   "pvp": 19.5,
   "visto": "2026-11-01"
+ },
+ "switch:2471212": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 8.99,
+  "pvp": 44.99,
+  "visto": "2026-11-10"
  },
  "switch:2471401": {
   "fecha_minimo": "2026-11-01",
@@ -5344,6 +5368,24 @@
   "minimo": 39.99,
   "pvp": 39.99,
   "visto": "2026-11-09"
+ },
+ "switch:2479020": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 1.99,
+  "pvp": 14.99,
+  "visto": "2026-11-10"
+ },
+ "switch:2479100": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 9.99,
+  "pvp": 19.99,
+  "visto": "2026-11-10"
+ },
+ "switch:2479120": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.49,
+  "pvp": 14.99,
+  "visto": "2026-11-10"
  },
  "switch:2479472": {
   "fecha_minimo": "2026-11-01",
@@ -5993,6 +6035,12 @@
   "pvp": 39.99,
   "visto": "2026-10-25"
  },
+ "switch:2638790": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 2.69,
+  "pvp": 8.99,
+  "visto": "2026-11-10"
+ },
  "switch:2638951": {
   "fecha_minimo": "2026-10-22",
   "minimo": 7.31,
@@ -6101,6 +6149,12 @@
   "pvp": 29.99,
   "visto": "2026-10-21"
  },
+ "switch:2642259": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 3.19,
+  "pvp": 7.99,
+  "visto": "2026-11-10"
+ },
  "switch:2642401": {
   "fecha_minimo": "2026-10-22",
   "minimo": 8.74,
@@ -6202,6 +6256,12 @@
   "minimo": 12.64,
   "pvp": 22.99,
   "visto": "2026-10-21"
+ },
+ "switch:2649226": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 2.09,
+  "pvp": 13.99,
+  "visto": "2026-11-10"
  },
  "switch:2649513": {
   "fecha_minimo": "2026-10-30",
@@ -6406,6 +6466,12 @@
   "minimo": 0.99,
   "pvp": 5.99,
   "visto": "2026-11-08"
+ },
+ "switch:2660655": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 3.24,
+  "pvp": 4.99,
+  "visto": "2026-11-10"
  },
  "switch:2660744": {
   "fecha_minimo": "2026-11-08",
@@ -6725,6 +6791,12 @@
   "pvp": 24.99,
   "visto": "2026-10-21"
  },
+ "switch:2676956": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.8,
+  "pvp": 19.5,
+  "visto": "2026-11-10"
+ },
  "switch:2677632": {
   "fecha_minimo": "2026-11-07",
   "minimo": 0.99,
@@ -6785,6 +6857,12 @@
   "pvp": 12.0,
   "visto": "2026-11-07"
  },
+ "switch:2681872": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 5.99,
+  "pvp": 19.99,
+  "visto": "2026-11-10"
+ },
  "switch:2682059": {
   "fecha_minimo": "2026-11-01",
   "minimo": 8.24,
@@ -6808,6 +6886,12 @@
   "minimo": 5.99,
   "pvp": 11.99,
   "visto": "2026-11-07"
+ },
+ "switch:2683232": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 10.35,
+  "pvp": 14.79,
+  "visto": "2026-11-10"
  },
  "switch:2683812": {
   "fecha_minimo": "2026-11-04",
@@ -6935,6 +7019,12 @@
   "pvp": 9.75,
   "visto": "2026-10-21"
  },
+ "switch:2691201": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 1.19,
+  "pvp": 2.99,
+  "visto": "2026-11-10"
+ },
  "switch:2691821": {
   "fecha_minimo": "2026-11-04",
   "minimo": 1.99,
@@ -7024,6 +7114,18 @@
   "minimo": 3.99,
   "pvp": 3.99,
   "visto": "2026-11-01"
+ },
+ "switch:2697325": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 1.99,
+  "pvp": 5.99,
+  "visto": "2026-11-10"
+ },
+ "switch:2697340": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 1.99,
+  "pvp": 7.99,
+  "visto": "2026-11-10"
  },
  "switch:2699403": {
   "fecha_minimo": "2026-11-01",
@@ -7548,8 +7650,8 @@
   "visto": "2026-10-21"
  },
  "switch:2897671": {
-  "fecha_minimo": "2026-10-21",
-  "minimo": 19.99,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 10.99,
   "pvp": 19.99,
   "visto": "2026-10-21"
  },
@@ -7690,6 +7792,12 @@
   "minimo": 2.99,
   "pvp": 6.99,
   "visto": "2026-10-22"
+ },
+ "switch:2908566": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 0.99,
+  "pvp": 9.99,
+  "visto": "2026-11-10"
  },
  "switch:2908574": {
   "fecha_minimo": "2026-10-21",
@@ -7840,6 +7948,12 @@
   "minimo": 24.99,
   "pvp": 24.99,
   "visto": "2026-10-21"
+ },
+ "switch:2912918": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 4.29,
+  "pvp": 8.59,
+  "visto": "2026-11-10"
  },
  "switch:2913149": {
   "fecha_minimo": "2026-10-21",
@@ -8003,6 +8117,12 @@
   "pvp": 9.99,
   "visto": "2026-11-08"
  },
+ "switch:2922889": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 2.99,
+  "pvp": 3.99,
+  "visto": "2026-11-10"
+ },
  "switch:2923567": {
   "fecha_minimo": "2026-10-21",
   "minimo": 8.39,
@@ -8045,6 +8165,12 @@
   "pvp": 21.9,
   "visto": "2026-11-09"
  },
+ "switch:2924640": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 22.99,
+  "pvp": 22.99,
+  "visto": "2026-11-10"
+ },
  "switch:2924782": {
   "fecha_minimo": "2026-11-01",
   "minimo": 14.99,
@@ -8068,6 +8194,12 @@
   "minimo": 8.76,
   "pvp": 21.9,
   "visto": "2026-10-22"
+ },
+ "switch:2925505": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 2.77,
+  "pvp": 4.63,
+  "visto": "2026-11-10"
  },
  "switch:2925507": {
   "fecha_minimo": "2026-10-21",
@@ -8249,6 +8381,12 @@
   "pvp": 4.99,
   "visto": "2026-11-07"
  },
+ "switch:2941199": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 1.49,
+  "pvp": 2.49,
+  "visto": "2026-11-10"
+ },
  "switch:2941764": {
   "fecha_minimo": "2026-11-01",
   "minimo": 19.99,
@@ -8314,6 +8452,12 @@
   "minimo": 17.09,
   "pvp": 18.99,
   "visto": "2026-10-22"
+ },
+ "switch:2946239": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 1.49,
+  "pvp": 2.49,
+  "visto": "2026-11-10"
  },
  "switch:2946304": {
   "fecha_minimo": "2026-11-09",
@@ -8435,6 +8579,12 @@
   "pvp": 29.99,
   "visto": "2026-11-01"
  },
+ "switch:2957625": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 2.99,
+  "pvp": 9.99,
+  "visto": "2026-11-10"
+ },
  "switch:2957853": {
   "fecha_minimo": "2026-11-01",
   "minimo": 22.99,
@@ -8531,6 +8681,12 @@
   "pvp": 24.99,
   "visto": "2026-11-08"
  },
+ "switch:2963502": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 2.99,
+  "pvp": 7.99,
+  "visto": "2026-11-10"
+ },
  "switch:2963504": {
   "fecha_minimo": "2026-11-08",
   "minimo": 11.99,
@@ -8609,11 +8765,23 @@
   "pvp": 7.99,
   "visto": "2026-11-04"
  },
+ "switch:2971761": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 0.99,
+  "pvp": 1.99,
+  "visto": "2026-11-10"
+ },
  "switch:2971769": {
   "fecha_minimo": "2026-11-08",
   "minimo": 2.09,
   "pvp": 6.99,
   "visto": "2026-11-08"
+ },
+ "switch:2973974": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 59.99,
+  "pvp": 59.99,
+  "visto": "2026-11-10"
  },
  "switch:2980084": {
   "fecha_minimo": "2026-11-08",
@@ -9509,6 +9677,12 @@
   "pvp": 20.49,
   "visto": "2026-10-21"
  },
+ "switch:3188975": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 4.49,
+  "pvp": 8.99,
+  "visto": "2026-11-10"
+ },
  "switch:3189080": {
   "fecha_minimo": "2026-10-21",
   "minimo": 39.99,
@@ -9562,6 +9736,12 @@
   "minimo": 34.99,
   "pvp": 34.99,
   "visto": "2026-10-21"
+ },
+ "switch:3195081": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 6.29,
+  "pvp": 6.99,
+  "visto": "2026-11-10"
  },
  "switch:3195279": {
   "fecha_minimo": "2026-11-02",
@@ -9869,6 +10049,18 @@
   "pvp": 12.06,
   "visto": "2026-10-29"
  },
+ "switch:3217474": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 19.99,
+  "pvp": 24.99,
+  "visto": "2026-11-10"
+ },
+ "switch:3217486": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 19.99,
+  "pvp": 24.99,
+  "visto": "2026-11-10"
+ },
  "switch:3217717": {
   "fecha_minimo": "2026-10-22",
   "minimo": 20.69,
@@ -9880,6 +10072,12 @@
   "minimo": 26.99,
   "pvp": 29.99,
   "visto": "2026-10-22"
+ },
+ "switch:3217912": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 6.74,
+  "pvp": 7.49,
+  "visto": "2026-11-10"
  },
  "switch:3218651": {
   "fecha_minimo": "2026-10-22",
@@ -9898,6 +10096,12 @@
   "minimo": 12.99,
   "pvp": 12.99,
   "visto": "2026-10-31"
+ },
+ "switch:3219123": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 6.74,
+  "pvp": 7.49,
+  "visto": "2026-11-10"
  },
  "switch:3219910": {
   "fecha_minimo": "2026-11-06",
@@ -9989,6 +10193,12 @@
   "pvp": 26.99,
   "visto": "2026-10-31"
  },
+ "switch:3227368": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 11.99,
+  "pvp": 11.99,
+  "visto": "2026-11-10"
+ },
  "switch:3227404": {
   "fecha_minimo": "2026-11-01",
   "minimo": 15.49,
@@ -10000,6 +10210,30 @@
   "minimo": 23.99,
   "pvp": 29.99,
   "visto": "2026-10-30"
+ },
+ "switch:3227441": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 19.99,
+  "pvp": 19.99,
+  "visto": "2026-11-10"
+ },
+ "switch:3227942": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 9.99,
+  "pvp": 9.99,
+  "visto": "2026-11-10"
+ },
+ "switch:3227954": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 9.99,
+  "pvp": 9.99,
+  "visto": "2026-11-10"
+ },
+ "switch:3229246": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 19.99,
+  "pvp": 19.99,
+  "visto": "2026-11-10"
  },
  "switch:3229417": {
   "fecha_minimo": "2026-11-04",
@@ -10024,6 +10258,18 @@
   "minimo": 6.99,
   "pvp": 6.99,
   "visto": "2026-11-09"
+ },
+ "switch:3236673": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 6.99,
+  "pvp": 6.99,
+  "visto": "2026-11-10"
+ },
+ "switch:3236685": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 8.99,
+  "pvp": 8.99,
+  "visto": "2026-11-10"
  },
  "switch:3238790": {
   "fecha_minimo": "2026-11-09",
@@ -10194,8 +10440,8 @@
   "visto": "2026-10-22"
  },
  "xbox:9MWDJRQ1BXTC": {
-  "fecha_minimo": "2026-10-22",
-  "minimo": 29.99,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 9.89,
   "pvp": 29.99,
   "visto": "2026-10-22"
  },
@@ -10289,6 +10535,12 @@
   "pvp": 49.99,
   "visto": "2026-10-22"
  },
+ "xbox:9MXQXWV8CLV6": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 34.99,
+  "pvp": 34.99,
+  "visto": "2026-11-10"
+ },
  "xbox:9MXS90V0RHTV": {
   "fecha_minimo": "2026-11-04",
   "minimo": 3.19,
@@ -10366,6 +10618,12 @@
   "minimo": 0.0,
   "pvp": 0.0,
   "visto": "2026-11-01"
+ },
+ "xbox:9MZRQ6QMC8PT": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 29.99,
+  "pvp": 29.99,
+  "visto": "2026-11-10"
  },
  "xbox:9MZTQS3M4N5P": {
   "fecha_minimo": "2026-11-03",
@@ -11202,8 +11460,8 @@
   "visto": "2026-11-01"
  },
  "xbox:9NCDMPCPDTQF": {
-  "fecha_minimo": "2026-10-22",
-  "minimo": 29.99,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 7.49,
   "pvp": 29.99,
   "visto": "2026-10-22"
  },
@@ -11314,6 +11572,12 @@
   "minimo": 39.99,
   "pvp": 39.99,
   "visto": "2026-10-23"
+ },
+ "xbox:9NDW7NW3K662": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 29.99,
+  "pvp": 29.99,
+  "visto": "2026-11-10"
  },
  "xbox:9NDX2927SND9": {
   "fecha_minimo": "2026-11-05",
@@ -11472,8 +11736,8 @@
   "visto": "2026-10-22"
  },
  "xbox:9NGRWJ03GR1N": {
-  "fecha_minimo": "2026-10-22",
-  "minimo": 19.99,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 3.99,
   "pvp": 19.99,
   "visto": "2026-10-22"
  },
@@ -11548,6 +11812,12 @@
   "minimo": 79.99,
   "pvp": 79.99,
   "visto": "2026-10-22"
+ },
+ "xbox:9NJ30NMVK83T": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 11.99,
+  "pvp": 11.99,
+  "visto": "2026-11-10"
  },
  "xbox:9NJ4SKVFSBMT": {
   "fecha_minimo": "2026-11-01",
@@ -12173,9 +12443,15 @@
   "pvp": 79.99,
   "visto": "2026-10-22"
  },
+ "xbox:9NSG02M09LP9": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 3.99,
+  "pvp": 4.99,
+  "visto": "2026-11-10"
+ },
  "xbox:9NSLQMF111VP": {
-  "fecha_minimo": "2026-11-01",
-  "minimo": 26.99,
+  "fecha_minimo": "2026-11-10",
+  "minimo": 6.74,
   "pvp": 26.99,
   "visto": "2026-11-01"
  },
@@ -12388,6 +12664,12 @@
   "minimo": 17.99,
   "pvp": 17.99,
   "visto": "2026-10-22"
+ },
+ "xbox:9NWH4DQ5WRP0": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 3.99,
+  "pvp": 4.99,
+  "visto": "2026-11-10"
  },
  "xbox:9NWLPG23T46V": {
   "fecha_minimo": "2026-11-05",
@@ -12658,6 +12940,12 @@
   "minimo": 49.99,
   "pvp": 49.99,
   "visto": "2026-10-22"
+ },
+ "xbox:9P27CCK0VT8G": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 19.99,
+  "pvp": 19.99,
+  "visto": "2026-11-10"
  },
  "xbox:9P27ZX0DH2JN": {
   "fecha_minimo": "2026-10-22",
@@ -13343,6 +13631,12 @@
   "pvp": 19.99,
   "visto": "2026-10-22"
  },
+ "xbox:9P9H67VRGQCT": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 29.99,
+  "pvp": 29.99,
+  "visto": "2026-11-10"
+ },
  "xbox:9P9VJ822JRH9": {
   "fecha_minimo": "2026-10-22",
   "minimo": 19.99,
@@ -13445,6 +13739,12 @@
   "pvp": 9.99,
   "visto": "2026-11-05"
  },
+ "xbox:9PCW6X6ZQP4Z": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 26.99,
+  "pvp": 29.99,
+  "visto": "2026-11-10"
+ },
  "xbox:9PCZ7R12WNDL": {
   "fecha_minimo": "2026-10-22",
   "minimo": 59.99,
@@ -13462,6 +13762,12 @@
   "minimo": 13.99,
   "pvp": 13.99,
   "visto": "2026-10-22"
+ },
+ "xbox:9PDHMRRC244X": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 5.29,
+  "pvp": 5.29,
+  "visto": "2026-11-10"
  },
  "xbox:9PDKDBQGG2N2": {
   "fecha_minimo": "2026-11-01",
@@ -13660,6 +13966,12 @@
   "minimo": 39.99,
   "pvp": 39.99,
   "visto": "2026-10-22"
+ },
+ "xbox:9PHJS81K5R4P": {
+  "fecha_minimo": "2026-11-10",
+  "minimo": 3.99,
+  "pvp": 4.99,
+  "visto": "2026-11-10"
  },
  "xbox:9PHKZ9XT6F85": {
   "fecha_minimo": "2026-10-22",
