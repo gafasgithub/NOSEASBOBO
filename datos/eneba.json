@@ -24,9 +24,24 @@
   "id": "switch:3124965",
   "precio": null
  },
+ "nintendo-the-legend-of-zelda-ocarina-of-time-nintendo-switch-2-eshop-key-global": {
+  "fecha": "2026-11-11",
+  "id": "switch:3115664",
+  "precio": null
+ },
  "steam-ace-combat-8-wings-of-theve-steam-key-pc-global": {
   "fecha": "2026-10-21",
   "id": "steam:2288340",
+  "precio": null
+ },
+ "steam-archeage-chronicles-steam-key-pc-global": {
+  "fecha": "2026-11-11",
+  "id": "steam:3218230",
+  "precio": null
+ },
+ "steam-boxroom-steam-key-pc-global": {
+  "fecha": "2026-11-11",
+  "id": "steam:4335460",
   "precio": null
  },
  "steam-car-park-capital-steam-key-pc-global": {
@@ -37,6 +52,11 @@
  "steam-castlevania-belmonts-curse-steam-key-pc-global": {
   "fecha": "2026-10-28",
   "id": "steam:4231820",
+  "precio": null
+ },
+ "steam-casualties-unknown-steam-key-pc-global": {
+  "fecha": "2026-11-11",
+  "id": "steam:4576490",
   "precio": null
  },
  "steam-clive-barkers-hellraiser-revival-steam-key-pc-global": {
@@ -59,6 +79,11 @@
   "id": "steam:2010030",
   "precio": null
  },
+ "steam-dungeon-rampage-remastered-steam-key-pc-global": {
+  "fecha": "2026-11-11",
+  "id": "steam:3053950",
+  "precio": null
+ },
  "steam-dynasty-warriors-3-complete-edition-remastered-steam-key-pc-global": {
   "fecha": "2026-10-21",
   "id": "steam:3841510",
@@ -77,6 +102,11 @@
  "steam-final-fantasy-resonance-steam-key-pc-global": {
   "fecha": "2026-11-10",
   "id": "steam:3259780",
+  "precio": null
+ },
+ "steam-football-manager-27-steam-key-pc-europe": {
+  "fecha": "2026-11-11",
+  "id": "steam:4530370",
   "precio": null
  },
  "steam-frosthaven-steam-pc-key-global": {
@@ -100,7 +130,7 @@
   "precio": null
  },
  "steam-lightyear-frontier-pc-steam-key-global": {
-  "fecha": "2026-11-10",
+  "fecha": "2026-11-11",
   "id": "steam:1677110",
   "precio": null
  },
@@ -164,6 +194,11 @@
   "id": "steam:3219030",
   "precio": null
  },
+ "steam-potato-please-steam-key-pc-global": {
+  "fecha": "2026-11-11",
+  "id": "steam:5266240",
+  "precio": null
+ },
  "steam-probably-stolen-cyberpunk-shopkeeper-sim-steam-key-pc-global": {
   "fecha": "2026-11-10",
   "id": "steam:4348910",
@@ -185,7 +220,7 @@
   "precio": null
  },
  "steam-saloon-simulator-steam-key-pc-global": {
-  "fecha": "2026-11-10",
+  "fecha": "2026-11-11",
   "id": "steam:1876930",
   "precio": null
  },
@@ -195,7 +230,7 @@
   "precio": null
  },
  "steam-silica-pc-steam-key-global": {
-  "fecha": "2026-11-10",
+  "fecha": "2026-11-11",
   "id": "steam:1494420",
   "precio": null
  },
@@ -250,7 +285,7 @@
   "precio": null
  },
  "steam-void-breaker-steam-pc-key-global": {
-  "fecha": "2026-11-10",
+  "fecha": "2026-11-11",
   "id": "steam:2615540",
   "precio": null
  },
@@ -259,13 +294,18 @@
   "id": "steam:3115160",
   "precio": null
  },
+ "steam-warhammer-survivors-steam-key-pc-europe": {
+  "fecha": "2026-11-11",
+  "id": "steam:3669620",
+  "precio": null
+ },
  "steam-we-were-here-tomorrow-steam-key-pc-global": {
   "fecha": "2026-11-10",
   "id": "steam:2315050",
   "precio": null
  },
  "steam-zed-zone-steam-key-pc-global": {
-  "fecha": "2026-11-10",
+  "fecha": "2026-11-11",
   "id": "steam:1211600",
   "precio": null
  }
