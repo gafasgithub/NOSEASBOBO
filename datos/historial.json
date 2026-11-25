@@ -2837,6 +2837,12 @@
   "pvp": 29.99,
   "visto": "2026-11-04"
  },
+ "steam:3218350": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 14.49,
+  "pvp": 14.49,
+  "visto": "2026-11-25"
+ },
  "steam:3219030": {
   "fecha_minimo": "2026-10-21",
   "minimo": 49.99,
@@ -3540,8 +3546,8 @@
   "visto": "2026-10-29"
  },
  "steam:4356430": {
-  "fecha_minimo": "2026-10-27",
-  "minimo": 45.0,
+  "fecha_minimo": "2026-11-25",
+  "minimo": 31.5,
   "pvp": 69.99,
   "visto": "2026-10-21"
  },
@@ -8574,8 +8580,8 @@
   "visto": "2026-11-08"
  },
  "switch:2909674": {
-  "fecha_minimo": "2026-10-21",
-  "minimo": 24.99,
+  "fecha_minimo": "2026-11-25",
+  "minimo": 17.49,
   "pvp": 49.99,
   "visto": "2026-10-21"
  },
@@ -11441,6 +11447,12 @@
   "pvp": 19.99,
   "visto": "2026-11-18"
  },
+ "switch:3228851": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 12.99,
+  "pvp": 12.99,
+  "visto": "2026-11-25"
+ },
  "switch:3229246": {
   "fecha_minimo": "2026-11-10",
   "minimo": 19.99,
@@ -11494,6 +11506,12 @@
   "minimo": 24.5,
   "pvp": 24.5,
   "visto": "2026-11-16"
+ },
+ "switch:3231939": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 15.99,
+  "pvp": 15.99,
+  "visto": "2026-11-25"
  },
  "switch:3235044": {
   "fecha_minimo": "2026-11-12",
@@ -11567,11 +11585,29 @@
   "pvp": 24.99,
   "visto": "2026-11-11"
  },
+ "switch:3240826": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 1.85,
+  "pvp": 3.09,
+  "visto": "2026-11-25"
+ },
  "switch:3241134": {
   "fecha_minimo": "2026-11-12",
   "minimo": 39.99,
   "pvp": 39.99,
   "visto": "2026-11-12"
+ },
+ "switch:3242133": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 19.99,
+  "pvp": 19.99,
+  "visto": "2026-11-25"
+ },
+ "switch:3251976": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 12.99,
+  "pvp": 12.99,
+  "visto": "2026-11-25"
  },
  "xbox:9MSTS8GMBR8P": {
   "fecha_minimo": "2026-10-22",
@@ -11820,8 +11856,8 @@
   "visto": "2026-11-05"
  },
  "xbox:9MXDPXSRVML5": {
-  "fecha_minimo": "2026-10-22",
-  "minimo": 59.99,
+  "fecha_minimo": "2026-11-25",
+  "minimo": 47.99,
   "pvp": 59.99,
   "visto": "2026-10-22"
  },
@@ -13332,8 +13368,8 @@
   "visto": "2026-11-01"
  },
  "xbox:9NKLQ0LZH7BR": {
-  "fecha_minimo": "2026-11-24",
-  "minimo": 34.99,
+  "fecha_minimo": "2026-11-25",
+  "minimo": 19.24,
   "pvp": 34.99,
   "visto": "2026-11-24"
  },
@@ -13642,6 +13678,12 @@
   "minimo": 0.0,
   "pvp": 0.0,
   "visto": "2026-11-01"
+ },
+ "xbox:9NP17CBLF7M0": {
+  "fecha_minimo": "2026-11-25",
+  "minimo": 14.99,
+  "pvp": 24.99,
+  "visto": "2026-11-25"
  },
  "xbox:9NP9CZ94P96Z": {
   "fecha_minimo": "2026-10-22",
